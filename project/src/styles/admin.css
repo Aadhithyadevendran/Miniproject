@@ -1,0 +1,180 @@
+/* admin.css */
+
+.admin-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  
+.rooms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+     justify-content: space-around; 
+   margin-bottom: 20px; }
+   
+  
+  .room {
+    color: black;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    flex-basis: 20%;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .room.closed {
+    background-color: #fdd;
+    border-color: #f99;
+  }
+  
+  .button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #007bff;
+    cursor: pointer;
+  }
+  
+  .button:disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+  }
+  
+  .booking-range-form, .management-form, .view-bookings-section {
+    margin-bottom: 20px;
+  }
+  .booking-range-form,  .view-bookings-section {
+    display: inline-block;
+    margin-left: 30px;
+  }
+  .view-bookings-form{
+    display: inline-block;
+    margin-left: 30px;
+
+  }
+  .management-form{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+
+  }
+  
+  .booking-range-form input, .management-form input, .view-bookings-form input {
+    margin-right: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .booking-range-form button, .management-form button, .view-bookings-form button {
+    padding:12px ;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #007bff;
+    cursor: pointer;
+  }
+  
+  .management-form select {
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .closed-tables {
+    margin-left: 30px;
+
+
+    margin-top: 20px;
+  }
+  
+  .closed-rooms-table, .closed-slots-table{
+    margin-left: 30px;
+    text-align: center;
+
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  .view-bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .closed-rooms-table th, .closed-slots-table th, .view-bookings-table th,
+  .closed-rooms-table td, .closed-slots-table td, .view-bookings-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    border: 2px solid;
+
+    text-align: center;
+  }
+  
+  .closed-rooms-table th, .closed-slots-table th, .view-bookings-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .closed-rooms-table tr:nth-child(even), .closed-slots-table tr:nth-child(even), .view-bookings-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .view-bookings-section {
+    margin-top: 20px;
+  }
+  
+  .view-bookings-section input, .view-bookings-section select {
+    margin-right: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .view-bookings-section button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #007bff;
+    cursor: pointer;
+  }
+  .alert {
+    position: sticky;
+    width: 30%;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #f44336; /* Red background for the alert */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateX(100%);
+  }
+  
+  .alert.show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .alert.success {
+    background-color: #4CAF50; /* Green background for success */
+  }
+  
+  .alert.error {
+    background-color: #f44336; /* Red background for error */
+  }
+  .view-bookings-table,.view-bookings-section{
+    width: 95%;
+  }
+ 
+  

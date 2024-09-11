@@ -1,0 +1,216 @@
+
+body {
+    font-family: Arial, sans-serif;
+    color: #000;
+}
+
+header {
+    background-color: #0595f6;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+#studentDetails {
+    display: sticky;
+    margin: 20px;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+#rooms {
+flex-direction: column;
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+
+}
+.rooms{
+display:inline-block;
+    gap:20px;
+    justify-content:flex-start; 
+
+}
+#viewBookings{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+/* table,td{
+    border:1px solid;
+}
+th{
+    text-align: left;
+    width: 15.9%;
+} */
+ td{
+  width:1%;
+  text-align: center;
+  border : 2px solid;
+  margin: 0;
+
+ }
+ 
+ table{
+  margin-left:30px;
+  width: 95%;
+  border-collapse: collapse;
+  text-align: center;
+ }
+ 
+
+.room {
+    flex-basis: 50%;
+    color: #fff;
+    padding: 20px 35px;
+    margin: 5px 0;
+    cursor: pointer;
+    text-align: center;
+    border:solid  #0595f6;
+    border-radius: 2px;
+}
+
+button {
+    background-color: #0595f6;
+    color: #fff;
+    border: none;
+    width:50%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0684d7;
+}
+#bookingForm{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.booking-form{
+  width:30%;
+  margin-left: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+#bookingFormElement{
+    width: 30%;
+    align-items: center;
+
+    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+.booking-history h2{
+  margin-left: 30px;
+}
+
+.timeSlot,.date,.mac{
+    flex-basis: 0%;
+}
+label,input,select{
+    width: 90%;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 10px;
+
+}
+select{
+  width: 95%;
+}
+#bookingFormElement button{
+    width: 30%;
+    margin-top: 10px;
+}
+.container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.booking-success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4caf50; /* Green background for success */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .booking-success-message {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+
+.alert-cancel.fade-out {
+    animation: fadeInOutCancel 3s ease-in-out;
+}
+/* General Alert Styles */
+.alert-success, .alert-cancel, .alert-invalid-date {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    z-index: 1000;
+    transition: opacity 0.5s ease-out;
+    opacity: 1;
+  }
+  
+  .alert-success {
+    background-color: #4CAF50; /* Green */
+  }
+  
+  .alert-cancel {
+    background-color: #f44336; /* Red */
+  }
+  
+  .alert-invalid-date {
+    background-color: #ff9800; /* Orange */
+  }
+  
+  /* Styles for fading out the alert */
+  .fade-out {
+    opacity: 0;
+  }
+  
+  /* Show class for alert visibility */
+  .show {
+    opacity: 1;
+  }
+  
+  /* Optional: add some spacing for better readability */
+  .alert-success, .alert-cancel, .alert-invalid-date {
+    margin-bottom: 10px;
+  }
+  
+  /* Additional styling for alert messages */
+  .alert-success::before, .alert-cancel::before, .alert-invalid-date::before {
+    content: '✉️';
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .category-selector,.date-selector{
+    margin-left:30px;
+    width:20%;
+    display:inline-block;
+  }
+  
