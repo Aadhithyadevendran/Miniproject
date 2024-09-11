@@ -3,11 +3,11 @@ import { useRoomContext } from '../RoomContext';
 import '../styles/admin.css';
 
 const Admin = () => {
-  const {rooms, updateRoom, bookingDateRange, setBookingRange } = useRoomContext();
+  const { rooms, updateRoom, bookingDateRange, setBookingRange, addCourse, courses } = useRoomContext();
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [closedSlot, setClosedSlot] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
-  // const [bookings, setBookings] = useState([]);
+  
   const [bookingRangeStart, setBookingRangeStart] = useState(bookingDateRange.startDate || '');
   const [bookingRangeEnd, setBookingRangeEnd] = useState(bookingDateRange.endDate || '');
 
@@ -15,6 +15,8 @@ const Admin = () => {
   const [viewDate, setViewDate] = useState('');
   const [viewSlot, setViewSlot] = useState('');
   const [viewBookings, setViewBookings] = useState([]);
+  const [newCourseCode, setNewCourseCode] = useState('');
+  const [newCourseName, setNewCourseName] = useState('');
 
   // Alert states
   const [alert, setAlert] = useState({ message: '', type: '' });
@@ -27,10 +29,20 @@ const Admin = () => {
       return () => clearTimeout(timer);
     }
   }, [alert]);
+  
+  const handleAddCourse = () => {
+    if (newCourseCode && newCourseName) {
+      addCourse({ code: newCourseCode, name: newCourseName }, 'CIA Exams'); // Specify section here
+      setNewCourseCode('');
+      setNewCourseName('');
+      showAlert('Course added successfully to CIA Exams', 'success');
+    } else {
+      showAlert('Please provide both course code and name', 'error');
+    }
+  };
 
   const handleRoomSelect = (room) => {
     setSelectedRoom(room);
-    // setBookings(room.bookings);
   };
 
   const showAlert = (message, type) => {
@@ -142,7 +154,7 @@ const Admin = () => {
           {alert.message}
         </div>
       )}
-
+         
       {/* Rooms List */}
       <div className="rooms">
         {rooms.map(room => (
@@ -154,24 +166,24 @@ const Admin = () => {
       </div>
 
       {/* Booking Range Form */}
-      <div style={{display:'flex'}}>
-      <div className="booking-range-form">
-        <h2>Set Booking Date Range</h2>
-        <input
-          type="date"
-          value={bookingRangeStart}
-          onChange={(e) => setBookingRangeStart(e.target.value)}
-        />
-        <input
-          type="date"
-          value={bookingRangeEnd}
-          onChange={(e) => setBookingRangeEnd(e.target.value)}
-        />
-        <button onClick={handleSetBookingRange}>Set Booking Range</button>
-      </div>
-       {/* View Bookings Section */}
+      <div style={{ display: 'flex' }}>
+        <div className="booking-range-form">
+          <h2>Set Booking Date Range</h2>
+          <input
+            type="date"
+            value={bookingRangeStart}
+            onChange={(e) => setBookingRangeStart(e.target.value)}
+          />
+          <input
+            type="date"
+            value={bookingRangeEnd}
+            onChange={(e) => setBookingRangeEnd(e.target.value)}
+          />
+          <button onClick={handleSetBookingRange}>Set Booking Range</button>
+        </div>
+        {/* View Bookings Section */}
         <div className="view-bookings-form">
-        <h2>View Bookings</h2>
+          <h2>View Bookings</h2>
 
           <input
             type="date"
@@ -185,9 +197,30 @@ const Admin = () => {
               <option key={slot} value={slot}>{slot}</option>
             ))}
           </select>
-          <button  style={{marginTop:'20px'}} onClick={handleViewBookings}>View Bookings</button>
+          <button style={{ marginTop: '20px' }} onClick={handleViewBookings}>View Bookings</button>
+        </div>
+        <div className="course-management">
+          <h2>Manage Courses (CIA)</h2>
+          <div className="predefined-courses">
+            {/* Predefined courses can be displayed here */}
           </div>
+          <div className="add-course">
+            <input
+              type="text"
+              placeholder="Course Code"
+              value={newCourseCode}
+              onChange={(e) => setNewCourseCode(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Course Name"
+              value={newCourseName}
+              onChange={(e) => setNewCourseName(e.target.value)}
+            />
+            <button onClick={handleAddCourse}>Add Course</button>
           </div>
+        </div>
+      </div>
 
       {/* Management Form */}
       {selectedRoom && (
@@ -195,36 +228,36 @@ const Admin = () => {
           <h2>Manage {selectedRoom.name}</h2>
 
           {/* Close Slot */}
-          <div style={{display:'flex'}}>
-          <div style={{display:'inline-block'}}>
-            <h3>Close Slot</h3>
-            
-            <input
-              type="date"
-              onChange={handleDateChange}
-              value={selectedDate}
-            />
-            <select onChange={handleSlotChange} value={closedSlot} disabled={isRoomClosed()}>
-              <option value="">Select Slot to Close</option>
-              {selectedRoom.availableSlots
-                .filter(slot => !isSlotClosed(slot))
-                .map(slot => (
-                  <option key={slot} value={slot}>{slot}</option>
-                ))}
-            </select>
-            <button onClick={handleCloseSlot} disabled={isRoomClosed()}>Close Slot</button>
-          </div>
+          <div style={{ display: 'flex' }}>
+            <div style={{ display: 'inline-block' }}>
+              <h3>Close Slot</h3>
 
-          {/* Close Room */}
-          <div  style={{display:'inline-block',marginLeft:'80px'}}>
-            <h3>Close Room</h3>
-            <input
-              type="date"
-              onChange={handleDateChange}
-              value={selectedDate}
-            />
-            <button onClick={handleCloseRoom}>Close Room</button>
-          </div>
+              <input
+                type="date"
+                onChange={handleDateChange}
+                value={selectedDate}
+              />
+              <select onChange={handleSlotChange} value={closedSlot} disabled={isRoomClosed()}>
+                <option value="">Select Slot to Close</option>
+                {selectedRoom.availableSlots
+                  .filter(slot => !isSlotClosed(slot))
+                  .map(slot => (
+                    <option key={slot} value={slot}>{slot}</option>
+                  ))}
+              </select>
+              <button onClick={handleCloseSlot} disabled={isRoomClosed()}>Close Slot</button>
+            </div>
+
+            {/* Close Room */}
+            <div style={{ display: 'inline-block', marginLeft: '80px' }}>
+              <h3>Close Room</h3>
+              <input
+                type="date"
+                onChange={handleDateChange}
+                value={selectedDate}
+              />
+              <button onClick={handleCloseRoom}>Close Room</button>
+            </div>
           </div>
         </div>
       )}
@@ -233,7 +266,7 @@ const Admin = () => {
       {hasClosedRooms && (
         <div className="closed-tables">
           <h2>Closed Rooms</h2>
-          <table style={{margin:0}} className="closed-rooms-table">
+          <table style={{ margin: 0 }} className="closed-rooms-table">
             <thead>
               <tr>
                 <th>Room Name</th>
@@ -261,7 +294,7 @@ const Admin = () => {
       {hasClosedSlots && (
         <div className="closed-tables">
           <h2>Closed Slots</h2>
-          <table style={{margin:0}} className="closed-slots-table">
+          <table style={{ margin: 0 }} className="closed-slots-table">
             <thead>
               <tr>
                 <th>Room Name</th>
@@ -287,21 +320,16 @@ const Admin = () => {
           </table>
         </div>
       )}
-      
 
-     
-
-        {/* View Bookings Table */}
-        {/* <h3>Bookings for {viewDate} at {viewSlot}</h3> */}
-        <div   className="view-bookings-section">
-          <h2>Bookings</h2>
-
-        {        
-
-        viewBookings.length > 0 ? 
-        (
-          <table style={{margin:0}} className="view-bookings-table">
+      {/* View Bookings Table */}
+      <div className="view-bookings-section">
+        {viewBookings.length > 0 ? (
+          <table style={{ margin: 0 }} className="view-bookings-table">
             <thead>
+              <tr>
+              <h2>Bookings</h2>
+
+              </tr>
               <tr>
                 <th>Room Name</th>
                 <th>Name</th>

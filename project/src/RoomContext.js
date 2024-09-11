@@ -33,6 +33,7 @@ export const RoomProvider = ({ children }) => {
       bookings: [],
     },
   ]);
+  const [courses, setCourses] = useState([]);
 
   const [bookingDateRange, setBookingDateRange] = useState({
     startDate: null,
@@ -106,11 +107,19 @@ export const RoomProvider = ({ children }) => {
     };
     addBooking(roomId, booking);
   };
+  const addCourse = (course) => {
+    setCourses([...courses, course]);
+  };
+
+  const removeCourse = (courseCode) => {
+    setCourses(courses.filter(course => course.code !== courseCode));
+  };
 
   return (
     <RoomContext.Provider
       value={{
         rooms,
+        courses,
         updateRoom,
         addBooking,
         bookingDateRange,
@@ -118,6 +127,8 @@ export const RoomProvider = ({ children }) => {
         isDateInBookingRange,
         bookSlot,
         cancelBooking,
+        addCourse,
+        removeCourse,
       }}
     >
       {children}

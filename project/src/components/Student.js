@@ -3,6 +3,7 @@ import { useRoomContext } from '../RoomContext';
 import '../styles/student.css';
 
 const Student = () => {
+  const { courses } = useRoomContext();
   const { rooms, bookSlot, isDateInBookingRange, cancelBooking } = useRoomContext();
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [slot, setSlot] = useState('');
@@ -19,6 +20,24 @@ const Student = () => {
   const studentName = 'DIVYA K';
   const regNo = '212222230035';
   const dept = 'AI&DS';
+
+  // Predefined courses for each section add additional courses pre defined here
+
+  const predefinedCourses = {
+    CIA: [
+      { code: '19CS404', name: 'Database Management and its Applications' },
+      { code: '19CS405', name: 'Operating System' },
+
+    ],
+    Modules: [
+      { code: '19AI307', name: 'OOP using Java' },
+      { code: '19CS302', name: 'Programmin in C' },
+      { code: '19CS301', name: 'Programming in python' },
+      { code: '19IT405', name: 'Data Structures in Python' },
+      { code: '19CS402', name: 'Design and Analysis of Algorithm' },
+      { code: '19EY710', name: 'Quantitative Ability I' },
+    ]
+  };
 
   useEffect(() => {
     if (category === 'Modules') {
@@ -119,13 +138,20 @@ const Student = () => {
     setTimeout(() => setCancelAlert(''), 3000);
   };
 
+  // Combine all bookings for the student
+  const allBookings = rooms.flatMap(room => room.bookings.filter(
+    booking => booking.regNo === regNo
+  ));
+
   const filteredRooms = !invalidDate ? rooms
     .filter(room => room.category === category)
     .filter(room => !room.closedRooms.includes(date)) : [];
 
-  const bookingsToShow = filteredRooms
-    .flatMap(room => room.bookings)
-    .filter(booking => booking.regNo === regNo);
+  // Combine predefined courses with dynamic courses based on category
+  const getCourseOptions = () => {
+    const predefined = predefinedCourses[category] || [];
+    return [...predefined, ...courses];
+  };
 
   return (
     <div className="student-container">
@@ -191,18 +217,18 @@ const Student = () => {
             onChange={(e) => setMacId(e.target.value)}
             value={macId}
           />
-          <input
-            type="text"
-            placeholder="Course Code"
-            onChange={(e) => setCourseCode(e.target.value)}
-            value={courseCode}
-          />
-          <input
-            type="text"
-            placeholder="Course Name"
-            onChange={(e) => setCourseName(e.target.value)}
-            value={courseName}
-          />
+          <select onChange={(e) => {
+            setCourseCode(e.target.value);
+            const selectedCourse = getCourseOptions().find(course => course.code === e.target.value);
+            setCourseName(selectedCourse ? selectedCourse.name : '');
+          }} value={courseCode}>
+            <option value="">Select Course</option>
+            {getCourseOptions().map(course => (
+              <option key={course.code} value={course.code}>
+                {course.name} - {course.code}
+              </option>
+            ))}
+          </select>
           <button style={{width:'30%',textAlign:'center',display:'inline-block'}} onClick={handleBookSlot}>Book Slot</button>
         </div>
       )}
@@ -211,7 +237,7 @@ const Student = () => {
           {bookingSuccess}
         </div>
       )}
-      {bookingsToShow.length > 0 && (
+      {allBookings.length > 0 && (
         <div className="booking-history">
           <h2>Your Bookings</h2>
           <table>
@@ -227,7 +253,7 @@ const Student = () => {
               </tr>
             </thead>
             <tbody>
-              {bookingsToShow.map(booking => {
+              {allBookings.map(booking => {
                 const room = rooms.find(r => r.id === booking.roomId);
                 return (
                   <tr key={booking.id}>

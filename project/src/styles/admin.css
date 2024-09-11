@@ -51,13 +51,14 @@
   .booking-range-form, .management-form, .view-bookings-section {
     margin-bottom: 20px;
   }
-  .booking-range-form,  .view-bookings-section {
-    display: inline-block;
+ .view-bookings-section {
+  display: inline-block;
+
     margin-left: 30px;
   }
-  .view-bookings-form{
-    display: inline-block;
+  .booking-range-form,.view-bookings-form,.course-management{
     margin-left: 30px;
+    flex-basis: 33%;
 
   }
   .management-form{
@@ -67,14 +68,14 @@
 
   }
   
-  .booking-range-form input, .management-form input, .view-bookings-form input {
+  .booking-range-form input, .management-form input, .view-bookings-form input,.course-management input{
     margin-right: 10px;
-    padding: 15px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
   }
   
-  .booking-range-form button, .management-form button, .view-bookings-form button {
+  .booking-range-form button, .management-form button, .view-bookings-form button,.course-management button {
     padding:12px ;
     border: none;
     border-radius: 5px;
@@ -88,6 +89,9 @@
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+  }
+  .view-bookings-form select{
+    padding: 12px;
   }
   
   .closed-tables {
@@ -127,6 +131,7 @@
   .closed-rooms-table tr:nth-child(even), .closed-slots-table tr:nth-child(even), .view-bookings-table tr:nth-child(even) {
     background-color: #f9f9f9;
   }
+  
   
   .view-bookings-section {
     margin-top: 20px;
