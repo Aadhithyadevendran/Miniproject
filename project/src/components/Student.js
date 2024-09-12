@@ -21,18 +21,16 @@ const Student = () => {
   const regNo = '212222230035';
   const dept = 'AI&DS';
 
-  // Predefined courses for each section add additional courses pre defined here
-
+  // Predefined courses for each section (add additional predefined courses here)
   const predefinedCourses = {
     CIA: [
       { code: '19CS404', name: 'Database Management and its Applications' },
       { code: '19CS405', name: 'Operating System' },
-
     ],
     Modules: [
       { code: '19AI307', name: 'OOP using Java' },
-      { code: '19CS302', name: 'Programmin in C' },
-      { code: '19CS301', name: 'Programming in python' },
+      { code: '19CS302', name: 'Programming in C' },
+      { code: '19CS301', name: 'Programming in Python' },
       { code: '19IT405', name: 'Data Structures in Python' },
       { code: '19CS402', name: 'Design and Analysis of Algorithm' },
       { code: '19EY710', name: 'Quantitative Ability I' },
@@ -147,10 +145,14 @@ const Student = () => {
     .filter(room => room.category === category)
     .filter(room => !room.closedRooms.includes(date)) : [];
 
-  // Combine predefined courses with dynamic courses based on category
+  // Combine predefined courses with dynamic courses only for the CIA Exams section
   const getCourseOptions = () => {
     const predefined = predefinedCourses[category] || [];
-    return [...predefined, ...courses];
+    // Only include dynamically added courses for the CIA Exams category
+    if (category === 'CIA') {
+      return [...predefined, ...courses];
+    }
+    return predefined;
   };
 
   return (
@@ -190,10 +192,10 @@ const Student = () => {
       )}
       
       {category && date && !invalidDate && category !== 'Modules' && (
-        <div className="rooms" style={{display:'inline-block',width:'50%'}}>
+        <div className="rooms" style={{ display: 'inline-block', width: '50%' }}>
           {filteredRooms.length === 0 && <p>No rooms available for the selected date.</p>}
           {filteredRooms.map(room => (
-            <div key={room.id} className={`room ${room.closedRooms.includes(date) ? 'closed' : ''}`} style={{display:'inline-block',width:'40%',marginLeft:'20px'}}>
+            <div key={room.id} className={`room ${room.closedRooms.includes(date) ? 'closed' : ''}`} style={{ display: 'inline-block', width: '40%', marginLeft: '20px' }}>
               <h2>{room.name}</h2>
               <button onClick={() => handleRoomSelect(room)}>Select Room</button>
             </div>
@@ -229,46 +231,41 @@ const Student = () => {
               </option>
             ))}
           </select>
-          <button style={{width:'30%',textAlign:'center',display:'inline-block'}} onClick={handleBookSlot}>Book Slot</button>
+          <button style={{ width: '30%', textAlign: 'center', display: 'inline-block' }} onClick={handleBookSlot}>Book Slot</button>
         </div>
       )}
       {bookingSuccess && (
-        <div className="booking-success-message">
+        <div className={`alert-success ${bookingSuccess ? 'show fade-out' : ''}`}>
           {bookingSuccess}
         </div>
       )}
       {allBookings.length > 0 && (
-        <div className="booking-history">
+        <div className="bookings">
           <h2>Your Bookings</h2>
           <table>
             <thead>
               <tr>
-                <td>Room Number</td>
-                <td>Slot</td>
-                <td>Date</td>
-                <td>MAC ID</td>
-                <td>Course Code</td>
-                <td>Course Name</td>
-                <td>Action</td>
+                <th>Date</th>
+                <th>Room</th>
+                <th>Slot</th>
+                <th>MAC ID</th>
+                <th>Course</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {allBookings.map(booking => {
-                const room = rooms.find(r => r.id === booking.roomId);
-                return (
-                  <tr key={booking.id}>
-                    <td>{room ? room.name : 'Unknown'}</td>
-                    <td>{booking.slot}</td>
-                    <td>{booking.date}</td>
-                    <td>{booking.macId}</td>
-                    <td>{booking.courseCode}</td>
-                    <td>{booking.courseName}</td>
-                    <td>
-                      <button onClick={() => handleCancelBooking(room.id, booking.id)}>Cancel</button>
-                    </td>
-                  </tr>
-                );
-              })}
+              {allBookings.map(booking => (
+                <tr key={booking.id}>
+                  <td>{booking.date}</td>
+                  <td>{rooms.find(room => room.id === booking.roomId)?.name || ''}</td>
+                  <td>{booking.slot}</td>
+                  <td>{booking.macId}</td>
+                  <td>{`${booking.courseCode} - ${booking.courseName}`}</td>
+                  <td>
+                    <button onClick={() => handleCancelBooking(booking.roomId, booking.id)}>Cancel</button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
