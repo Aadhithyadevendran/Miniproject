@@ -4,7 +4,7 @@ The Exam Slot Booking System is a web-based platform specifically designed to st
 
 ## About
 
-Tailored Chatbot for Hostel Booking System is a project designed to integrate a chatbot that leverages advanced natural language processing techniques to understand and respond to user queries to the hostel booking system. Traditional hostel booking processes are often time-consuming and involve manual searches and extensive communication with hostel staff. This project seeks to overcome these challenges by creating an easy-to-use chatbot interface that assists students in addressing inquiries.
+The Exam Slot Booking System is an innovative solution for handling exam scheduling in educational institutions with a high volume of students and exams. This system allows students to book exam slots seamlessly while administrators can manage room assignments, monitor real-time booking statuses, and resolve potential conflicts. The system is powered by the MERN (MongoDB, Express, React, Node.js) stack and includes robust authentication and authorization features, making it secure and efficient for academic environments.
 
 ## Features
 
@@ -46,6 +46,7 @@ The architecture diagram below shows the main components of the Exam Slot Bookin
 
 <!--Embed the Output picture at respective places as shown below as shown below-->
 #### Output1 - LOGIN PAGE
+
 
 The Login Page in the Exam Slot Booking System is a secure access point designed to authenticate both students and admins, directing each to their respective dashboards. This page features fields for username and password entry, with robust security measures in place, including password encryption and JSON Web Tokens (JWT) for session management. Upon login, admins gain access to a dashboard where they can oversee and manage room assignments, adjust exam slots, and monitor booking activity. Students, on the other hand, are directed to their booking interface, where they can view available exam slots, make reservations, and manage their bookings, ensuring a streamlined and user-friendly experience for both roles.
 
