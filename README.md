@@ -9,20 +9,31 @@ Tailored Chatbot for Hostel Booking System is a project designed to integrate a 
 ## Features
 
 -User-friendly booking interface with real-time room availability updates.
+
 -Secure user authentication and role-based access control for both students and administrators.
+
 -Automated room assignment and slot allocation, reducing scheduling conflicts.
+
 -Administrative dashboard for monitoring booking patterns and adjusting slot availability.
+
 -Dynamic booking window configuration to handle different exam schedules and session types.
+
 -Data encryption and JWT-based secure login system.
 
 ## Requirements
 
 -Operating System: 64-bit OS (Windows 10 or Ubuntu) for full compatibility.
+
 -Backend: Node.js and Express for the API, with MongoDB as the database for secure data handling.
+
 -Frontend: React for the user interface to ensure a responsive and dynamic booking experience.
+
 -Libraries and Frameworks: Use of JWT for secure user authentication and bcrypt for password encryption.
+
 -Development Environment: Recommended IDE is Visual Studio Code with extensions for debugging and version control.
+
 -Additional Dependencies: Includes Mongoose for MongoDB, React Router for page navigation, and Nodemailer for email notifications.
+
 
 ## System Architecture
 
