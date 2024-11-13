@@ -22,7 +22,7 @@ Tailored Chatbot for Hostel Booking System is a project designed to integrate a 
 ## System Architecture
 The architecture diagram below shows the main components of the Exam Slot Booking System, detailing the interaction between the front-end and back-end, and the flow of data between the database, server, and user interface.
 
-![image](https://github.com/user-attachments/assets/11aa3bb3-c87e-42b3-a4f0-cd2428bdbb45)
+![Screenshot 2024-11-13 212859](https://github.com/user-attachments/assets/0425b58e-babb-4e8d-8562-d683e6eb395d)
 
 
 ## Output
@@ -30,19 +30,19 @@ The architecture diagram below shows the main components of the Exam Slot Bookin
 <!--Embed the Output picture at respective places as shown below as shown below-->
 #### Output1 - LOGIN PAGE
 
-![Screenshot (359)](https://github.com/user-attachments/assets/c6bd48a8-708c-4b49-bfbd-e228c92e1880)
-)
+![Screenshot (359)](https://github.com/user-attachments/assets/d7f94c60-864e-478c-a638-24713fc06cda)
+
 
 #### Output2 - ADMIN PAGE
 Displays real-time exam slot bookings, room utilization, and slot scheduling options for administrators.
-(![Screenshot (358)](https://github.com/user-attachments/assets/04977fd7-b784-4a4f-bbe0-7e742f0b94b1)
-)
+![Screenshot (358)](https://github.com/user-attachments/assets/0f1c1871-87b9-4750-b2c6-60dd43fe8266)
+
 
 #### Output2 - STUDENT PAGE
 Displays real-time exam slot bookings, room utilization, and slot scheduling options for administrators.
-(![Screenshot (358)](![Screenshot (357)](https://github.com/user-attachments/assets/b94c77a5-c7cc-4456-8b7f-185c83aa4933)
-)
-)
+![Screenshot (357)](https://github.com/user-attachments/assets/c6ce43f7-5186-48ac-9dc2-ad3feaad5de6)
+
+
 
 
 ## Results and Impact
