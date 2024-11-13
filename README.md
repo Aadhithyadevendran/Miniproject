@@ -75,6 +75,7 @@ This project represents a step toward digital transformation in educational sche
 
 ## Articles published / References
 Gupta, N.S., et al., “Streamlined Scheduling Systems in Educational Institutions Using MERN Stack,” Educational Technology Journal, vol. 15, Apr. 2023.
+
 Kumar, R., and Singh, P., “Leveraging Technology for Optimized Resource Allocation in Educational Settings,” Tech Innovations in Education, vol. 9, no. 2, Mar. 2024.
 
 
